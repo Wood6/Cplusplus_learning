@@ -10,6 +10,7 @@ private:
 
 public:
     IntArray(int len);
+    IntArray(const IntArray& obj);
     free();
 
     int length();

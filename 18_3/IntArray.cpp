@@ -28,7 +28,7 @@ IntArray::IntArray(const IntArray& obj)
     printf("IntArray(const IntArray& obj)\n");
 }
 
-IntArray::free()
+IntArray::~IntArray()
 {
     if(m_pointer)
     {

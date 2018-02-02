@@ -11,7 +11,7 @@ private:
 public:
     IntArray(int len);
     IntArray(const IntArray& obj);
-    free();
+    ~IntArray();
 
     int length();
     bool setValue(int index, int value);

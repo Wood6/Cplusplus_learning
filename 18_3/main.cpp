@@ -32,9 +32,6 @@ int main()
         }
     }
 
-    tab.free();
-    tab2.free();
-
     return 0;
 }
 /* 运行结果

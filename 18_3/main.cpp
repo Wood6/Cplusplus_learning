@@ -4,17 +4,17 @@
 
 int main()
 {
-    IntArray tab(5);  // 利用IntArray创建5个元素的对象数组
+    IntArray* tab = IntArray::NewInstance(5);
     int value = 0;
 
-    for(int i=0; i<tab.length(); i++)
+    for(int i=0; i<tab->length(); i++)
     {
-        tab.setValue(i, i);
+        tab->setValue(i, i);
     }
 
-    for(int i=0; i<tab.length(); i++)
+    for(int i=0; i<tab->length(); i++)
     {
-        if( tab.getValue(i, value) )
+        if( tab->getValue(i, value) )
         {
             printf("tab[%d] = %d\n", i, value);
         }
@@ -22,11 +22,11 @@ int main()
 
     printf("-----------------------\n");
 
-    IntArray tab2 = tab;   // 拷贝构造,能直接用现有数组初始化新定义数组
+    IntArray tab2 = *tab;   // 拷贝构造,能直接用现有数组初始化新定义数组
 
     for(int i=0; i<tab2.length(); i++)
     {
-        if( tab.getValue(i, value) )
+        if( tab2.getValue(i, value) )
         {
             printf("tab2[%d] = %d\n", i, value);
         }

@@ -2,16 +2,45 @@
 #include "IntArray.h"
 #include <stdio.h>
 
+// 第一阶构造：资源无关的初始化
 IntArray::IntArray(int len)
 {
-    m_pointer = new int[len];
+    m_length = len;
+}
 
-    for(int i=0; i<len; i++)
+// 第二阶构造：系统资源的申请操作
+bool IntArray::construct()
+{
+    bool bRet = true;
+
+    m_pointer = new int[m_length];
+
+    if( m_pointer )
     {
-        m_pointer[i] = 0;
+        for(int i=0; i<m_length; i++)
+        {
+            m_pointer[i] = 0;
+        }
+    }
+    else
+    {
+        bRet = false;
     }
 
-    m_length = len;
+    return bRet;
+}
+
+IntArray* IntArray::NewInstance(int len)
+{
+    IntArray* obj = new IntArray(len);
+
+    if( !(obj && obj->construct()) )
+    {
+        delete obj;
+        obj = NULL;
+    }
+
+    return obj;
 }
 
 // 拷贝构造（成员m_pointer指向了动态内存空间,所以应该是深拷贝）

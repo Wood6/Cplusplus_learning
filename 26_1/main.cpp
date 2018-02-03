@@ -7,7 +7,10 @@ private:
     int m_i;
     static int s_i;
 
+    Test(int v) {}
+
 public:
+    Test() {}
     int getMi();
     static void staticPrint(const char* s);
     static void staticSetMi(int v);
@@ -35,6 +38,10 @@ void Test::staticSetMi(int v)
     //error: invalid use of member 'Test::m_i' in static member function
     //静态成员函数不能访问非静态成员变量,因为没有this指针
     //m_i = v;
+
+    //getMi();  // error 静态成员函数中不能调用普通成员函数,原因也是无this指针
+    Test();     // 但却可以直接调用构造函数
+    Test(3);    // private的构造函数也可以直接调用
 }
 
 void Test::staticSetMi(Test& obj, int v)
@@ -59,6 +66,8 @@ int Test::staticGetSi()
     return s_i;
 }
 
+
+
 int main()
 {
     Test::staticPrint("main Being...");  // 通过类名调用静态成员函数
@@ -77,6 +86,8 @@ int main()
     printf("t1.s_i = %d\n", t1.getSi());       // 普通成员函数访问静态成员变量
 
     Test::staticPrint("main End...");
+
+    Test::staticSetMi(1);        // 证明静态成员函数可以直接调用构造函数
 
     return 0;
 }

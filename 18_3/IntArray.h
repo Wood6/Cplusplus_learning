@@ -18,6 +18,10 @@ public:
     int length();
     bool setValue(int index, int value);
     bool getValue(int index, int &value);
+
+    int& operator [] (int n);
+    IntArray& self();   // 因为该类只能在堆在创建对象，为了操作方便
+                        // 通过这里返回对象的引用，可以避开指针操作的麻烦
 };
 
 #endif

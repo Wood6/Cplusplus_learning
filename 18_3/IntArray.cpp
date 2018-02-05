@@ -93,3 +93,16 @@ bool IntArray::getValue(int index, int &value)
 
     return bRet;
 }
+
+int& IntArray::operator [] (int index)
+{
+    if( (0 <= index ) && (index < m_length) )
+    {
+        return m_pointer[index];
+    }
+}
+
+IntArray& IntArray::self()
+{
+    return *this;
+}

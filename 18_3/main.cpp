@@ -6,11 +6,13 @@ using namespace std;
 
 int main()
 {
-    IntArray* tab = IntArray::NewInstance(5);
+    IntArray* tab = IntArray::NewInstance(10);
+    IntArray* tab1 = IntArray::NewInstance(5);
 
-    if( tab )
+    if( tab && tab1 )
     {
         IntArray& rTab = tab->self();
+        IntArray& rTab1 = tab1->self();
 
         for(int i=0; i<tab->length(); i++)
         {
@@ -33,6 +35,15 @@ int main()
         }
 
         cout << endl;
+
+        rTab1 = rTab;   // 赋值
+
+        for(int i=0; i<rTab1.length(); i++)
+        {
+            cout << rTab1[i] << " ";
+        }
+
+        cout << endl;
     }
 
     delete tab;
@@ -40,7 +51,9 @@ int main()
     return 0;
 }
 /* 运行结果
-0 1 2 3 4
+0 1 2 3 4 5 6 7 8 9
 IntArray(const IntArray& obj)
-0 1 2 3 4
+0 1 2 3 4 5 6 7 8 9
+IntArray::operator = (const IntArray& obj)
+0 1 2 3 4 5 6 7 8 9
 */

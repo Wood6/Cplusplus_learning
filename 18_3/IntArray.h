@@ -14,6 +14,8 @@ public:
     static IntArray* NewInstance(int len);
 
     IntArray(const IntArray& obj);  // 继续保留拷贝构造函数是公有的
+    IntArray& operator = (const IntArray& obj);  // 重载赋值操作符
+
     ~IntArray();
     int length();
     bool setValue(int index, int value);

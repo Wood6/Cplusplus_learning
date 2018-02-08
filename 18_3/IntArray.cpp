@@ -57,6 +57,47 @@ IntArray::IntArray(const IntArray& obj)
     printf("IntArray(const IntArray& obj)\n");
 }
 
+IntArray& IntArray::operator = (const IntArray& obj)
+{
+    if( this != &obj )
+    {
+        /*
+        delete m_pointer;
+
+        //错误,const对象不能调用非const成员函数
+        //m_pointer = new int[obj.length()];
+        m_pointer = new int[obj.m_length];
+
+        for(int i=0; i<obj.m_length; i++)
+        {
+            m_pointer[i] = obj.m_pointer[i];
+        }
+        */
+
+        // 下面语句更安全，先以一个临时指针接收obj.m_pointer
+        // 可以防止上面 delete m_pointer 后 new 又不成功的情况
+        // 这个时候那么m_pointer就成为了野指针
+        // 而下面的代码怎么都不会有野指针产生
+        int* pointer = new int[obj.m_length];
+
+        if( pointer )
+        {
+            for(int i=0; i<obj.m_length; i++)
+            {
+                pointer[i] = obj.m_pointer[i];
+            }
+
+            m_length = obj.m_length;  // 这个一定不要忘了
+            delete m_pointer;
+            m_pointer = pointer;
+        }
+    }
+
+    printf("IntArray::operator = (const IntArray& obj)\n");
+
+    return *this;
+}
+
 IntArray::~IntArray()
 {
     if(m_pointer)

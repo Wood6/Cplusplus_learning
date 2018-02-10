@@ -42,6 +42,42 @@ Complex Complex::operator / (const Complex& right)
     return Complex(na, nb);
 }
 
+Complex& Complex::operator ++ ()
+{
+    a++;
+    b++;
+
+    return *this;
+}
+
+Complex Complex::operator ++ (int)
+{
+    Complex ret(a, b);
+
+    a++;
+    b++;
+
+    return ret;
+}
+
+Complex& Complex::operator -- ()
+{
+    a--;
+    b--;
+
+    return *this;
+}
+
+Complex Complex::operator -- (int)
+{
+    Complex ret(a, b);
+
+    a--;
+    b--;
+
+    return ret;
+}
+
 bool Complex::operator == (const Complex& right)
 {
     return (a == right.a) && (b == right.b);

@@ -20,6 +20,11 @@ public:
     Complex operator * (const Complex& right);
     Complex operator / (const Complex& right);
 
+    Complex& operator ++ ();     // 前置++
+    Complex operator ++ (int);   // 后置++
+    Complex& operator -- ();     // 前置--
+    Complex operator -- (int);   // 后置--
+
     bool operator == (const Complex& right);
     bool operator != (const Complex& right);
 

@@ -1,22 +1,22 @@
 // main.cpp 文件
 #include <iostream>
-#include "IntArray.h"
+#include "HeapArray.h"
 
 using namespace std;
 
 int main()
 {
-    IntArray* tab = IntArray::NewInstance(10);
-    IntArray* tab1 = IntArray::NewInstance(5);
+    HeapArray<char>* tab = HeapArray<char>::NewInstance(10);
+    HeapArray<char>* tab1 = HeapArray<char>::NewInstance(5);
 
     if( tab && tab1 )
     {
-        IntArray& rTab = tab->self();
-        IntArray& rTab1 = tab1->self();
+        HeapArray<char>& rTab = tab->self();
+        HeapArray<char>& rTab1 = tab1->self();
 
         for(int i=0; i<tab->length(); i++)
         {
-            rTab[i] = i;  // 避免非得这样使用指针 (*tab)[i] = i ;
+            rTab[i] = i + 'a';  // 避免非得这样使用指针 (*tab)[i] = i + 'a';
         }
 
         for(int i=0; i<tab->length(); i++)
@@ -26,8 +26,8 @@ int main()
 
         cout << endl;
 
-        //IntArray tab2 = *tab;   // 拷贝构造,能直接用现有数组初始化新定义数组
-        IntArray tab2 = rTab;     // 与上等价
+        //HeapArray<char> tab2 = *tab;   // 拷贝构造,能直接用现有数组初始化新定义数组
+        HeapArray<char> tab2 = rTab;     // 与上等价
 
         for(int i=0; i<tab2.length(); i++)
         {
@@ -51,9 +51,7 @@ int main()
     return 0;
 }
 /* 运行结果
-0 1 2 3 4 5 6 7 8 9
-IntArray(const IntArray& obj)
-0 1 2 3 4 5 6 7 8 9
-IntArray::operator = (const IntArray& obj)
-0 1 2 3 4 5 6 7 8 9
+a b c d e f g h i j
+a b c d e f g h i j
+a b c d e f g h i j
 */

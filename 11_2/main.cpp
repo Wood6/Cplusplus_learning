@@ -18,17 +18,24 @@ void static_cast_demo()
 void const_cast_demo()
 {
     // 用常量初始化引用，要分配内存。故i为变量，因加const而成只读变量
-    const int &i = 1;  // i为引用--》只读变量，说明j不能做为左值而己
-    int &j = const_cast<int&>(i);  // 转为普通引用，k就是j的别名
+    const int &i = 1;  // i为引用--》只读变量，说明i不能做为左值而己
+    // i = 2;          // error: assignment of read-only reference 'i'
+
+    int &j = const_cast<int&>(i);  // 转为普通引用，j就是i的别名
+    // i = 2;          // error: assignment of read-only reference 'i'
+                       // 上面：不是去掉变量i的只读属性，而是对i的一个副本去掉只读属性，将其赋给引用j
+                       // 所以const_cast<int&>后i依旧为只读变量
 
     j = 100;
 
     printf("j = %d\n", j);
     printf("i = %d\n", i);
 
-    const int x = 2;                   // x为常量
-    int &y = const_cast<int&>(x);      // 此时，会为x分配内存
-    int *px = const_cast<int*>(&x);
+    const int x = 2;                   // x为常量，放进常量表中
+    // x = 5;                          // error: assignment of read-only variable 'x'
+                                       // 说明若有对x作为左值等用时，使用的是内存中的x，并且由于是const修饰，还是只读的
+    int &y = const_cast<int&>(x);      // 这样也会为x分配内存
+    int *px = const_cast<int*>(&x);    // 同上
 
     // error: invalid const_cast from type 'const int' to type 'int*'
     // int *px = const_cast<int*>(x);
@@ -39,17 +46,17 @@ void const_cast_demo()
 
     y = 200;
 
-    printf("x = %d\n", x);
-    printf("y = %d\n", y);
-    printf("*px = %d\n", *px);
+    printf("x = %d\n", x);             // 常量表中的x
+    printf("y = %d\n", y);             // 内存中的x
+    printf("*px = %d\n", *px);         // 内存中的x
 
     *px = 400;
 
-    printf("x = %d\n", x);
+    printf("x = %d\n", x);             // 常量表中的x
     printf("y = %d\n", y);
     printf("*px = %d\n", *px);
 
-    printf("&x = %p\n", &x);  // 这三个内存地址都是相同的
+    printf("&x = %p\n", &x);  // 这三个内存地址都是相同的，都是内存中x的地址
     printf("&y = %p\n", &y);
     printf("px = %p\n", px);
 }

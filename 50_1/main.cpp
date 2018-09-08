@@ -1,4 +1,4 @@
-// Àà¶ÔÏóµÄÄÚ´æ²¼¾ÖÊµÖÊ¾ÍÊÇÒ»¸östruct
+ï»¿// ç±»å¯¹è±¡çš„å†…å­˜å¸ƒå±€å®è´¨å°±æ˜¯ä¸€ä¸ªstruct
 #include <iostream>
 
 using namespace std;
@@ -33,7 +33,7 @@ int main()
 {
     classTest t1;
 
-    // class ºÍ struct ÔÚÄÚ´æ²¼¾ÖÉÏÊÇÒ»ÑùµÄ¡£´óĞ¡ÏàÍ¬
+    // class å’Œ struct åœ¨å†…å­˜å¸ƒå±€ä¸Šæ˜¯ä¸€æ ·çš„ã€‚å¤§å°ç›¸åŒ
     cout << "sizeof(classTest) = " << sizeof(classTest) << endl; // 24
     cout << "sizeof(t1) = " << sizeof(t1) << endl;               // 24
     cout << "sizeof(stTest) = " << sizeof(stTest) << endl;       // 24
@@ -42,20 +42,20 @@ int main()
 
     cout << endl;
 
-    stTest* pst = reinterpret_cast<stTest*>(&t1); // ½«ÀàÇ¿ÖÆ×ª»¯½á¹¹Ìå
+    stTest* pst = reinterpret_cast<stTest*>(&t1); // å°†ç±»å¼ºåˆ¶è½¬åŒ–ç»“æ„ä½“
 
-    // ÀûÓÃ½á¹¹Ìå¶ÔÀàµÄ private ³ÉÔ±½øĞĞ¸³Öµ(×¢ÒâÊÇ private ³ÉÔ±)
-    // ËµÃ÷ class ÔÚÔËĞĞÊ±,private ·ÃÎÊÈ¨ÏŞÖ»ÔÚ±àÒëÆÚÆğ×÷ÓÃ¡£
+    // åˆ©ç”¨ç»“æ„ä½“å¯¹ç±»çš„ private æˆå‘˜è¿›è¡Œèµ‹å€¼(æ³¨æ„æ˜¯ private æˆå‘˜)
+    // è¯´æ˜ class åœ¨è¿è¡Œæ—¶,private è®¿é—®æƒé™åªåœ¨ç¼–è¯‘æœŸèµ·ä½œç”¨ã€‚
     pst->i = 1;
     pst->j = 2;
     pst->c = 'c';
     pst->d = 3.1415;
 
-    t1.print();        // class ÖĞµÄ private ³ÉÔ±±»¸Ä±ä
+    t1.print();        // class ä¸­çš„ private æˆå‘˜è¢«æ”¹å˜
 
     return 0;
 }
-/* ÔËĞĞ½á¹û  WindowsÏÂQtCreator±àÒëºóÔËĞĞ½á¹û
+/* è¿è¡Œç»“æœ  Windowsä¸‹QtCreatorç¼–è¯‘åè¿è¡Œç»“æœ
 sizeof(classTest) = 24
 sizeof(t1) = 24
 sizeof(stTest) = 24
@@ -69,7 +69,7 @@ j = 2
 c = c
 d = 3.1415
 
-  ** linux ÏÂg++±àÒëºóÔËĞĞ½á¹û **
+  ** linux ä¸‹g++ç¼–è¯‘åè¿è¡Œç»“æœ **
 sizeof(classTest) = 20
 sizeof(t1) = 20
 sizeof(stTest) = 20
@@ -83,4 +83,3 @@ j = 2
 c = c
 d = 3.1415
 */
-

@@ -1,4 +1,4 @@
-// �̳ж���ģ�ͣ����ؼ̳ж���麯��
+﻿// 继承对象模型：多重继承多个虚函数
 #include <iostream>
 
 using namespace std;

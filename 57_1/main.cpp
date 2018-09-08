@@ -21,7 +21,7 @@ int main()
     //错误，两个参数类型不同，函数模板不允许隐式转换.
     //cout << Max('c', 100)<< endl;
 
-    //正确，显式指定T为int类型，可将'a'隐式转为指定的int型
+    //正确，显式指定T为int类型，可将'c'隐式转为指定的int型
     cout << Max<int>('c', 100) << endl;
 
     return 0;

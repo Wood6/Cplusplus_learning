@@ -22,11 +22,13 @@ class Test
 {
 private:
     Value v1 = 1;
+    Value v2;
 
 public:
     Test()
     {
         v1 = Value(2);
+        v2 = Value(20);
     }
 };
 
@@ -39,5 +41,7 @@ int main()
 }
 /* 运行结果
 Value(int v),v = 1
+Value()
 Value(int v),v = 2
+Value(int v),v = 20
 */

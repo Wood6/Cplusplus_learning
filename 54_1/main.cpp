@@ -58,7 +58,7 @@ int main()
     cout << "d.getMc() = " << d.getMc() << endl;
     cout << endl;
 
-    // 注意以上两行，都是将对象d的地址赋值给一个指针，表面上看似
+    // 注意以下两行，都是将对象d的地址赋值给一个指针，表面上看似
     // pa指针应该等于pb指针，但实际上不会这样pa指向的是d对象中
     // BaseA的子对象，而pb指向的是d对象中BaseB子对象的部分。
     BaseA* pa = &d;

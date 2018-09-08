@@ -45,11 +45,11 @@ int main()
     return 0;
 }
 /* 运行结果
-Member::Member(const char* s): gA
-Member::Member(const char* s): mA
+Member::Member(const char* s): gA        // Member g_A("gA");
+Member::Member(const char* s): mA        // Test t1;
 Member::Member(const char* s): mB
 Test::Test()
-Tese::~Test()         // 注意析构顺序与构造顺序是相反的！
+Tese::~Test()                            // 注意析构顺序与构造顺序是相反的！
 Member::~Member(): mB
 Member::~Member(): mA
 Member::~Member(): gA

@@ -54,7 +54,7 @@ int main()
     ppb->funcB();   // 期望调用BaseB::funcB，实际上调用的是BaseA::funcA！
 
     cout << "Using pbb to call funcB()..." << endl;
-    pbb->funcB();   // 实际与期望的一致，都是调用BaseB::funcA
+    pbb->funcB();   // 实际与期望的一致，都是调用BaseB::funcB
 
     cout << "pa = " << pa << endl;
     cout << "pb = " << pb << endl;

@@ -27,7 +27,7 @@ typedef void(*pFuncT)(Test&, Test&);
 int main()
 {
     pFuncI pFi = Swap;  // 1. 编译器自动推导T为int
-                        // 当编译到这行时，发生要用一个模板去初始化pFi
+                        // 当编译到这行时，发现要用一个模板去初始化pFi
                         // 而pFi的类型又是void(*pFuncI)(int&, int&),
                         // 所以此时，编译器会用int去替换T
                         // 2. 然后生成一个Swap函数

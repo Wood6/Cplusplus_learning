@@ -27,7 +27,7 @@ int main()
     //int Test::c_count = 0;  // 错误，试图在这里为静态成员分配空间
 
     Test t2;                 // c_count增加1
-    Test* pt3 = new Test;    // c_count增加1++
+    Test* pt3 = new Test;    // c_count增加1
 
     // 等于1，表示c_count是在全局区分配空间，该变量不属于某个对象本身的。
     // 占1Byte的原因是用来占位的，以来区分对象实例化的

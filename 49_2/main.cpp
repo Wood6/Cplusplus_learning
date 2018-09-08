@@ -68,6 +68,7 @@ int main()
     rp.func();           // 动态联编,virtual函数，尽管func()在Child中没有被重写
     rp.func(1, 2);       // 动态联编
     //error: no matching function for call to 'Parent::func(int, int, int)'
+    //void func(int a, int b, int c) 不是virtual函数，不能多态，而父类中又没有这个函数，所以error
     //rp.func(1, 2, 3);
 
     return 0;

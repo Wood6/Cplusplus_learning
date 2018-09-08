@@ -8,7 +8,8 @@ using namespace std;
 
 // STRING_TO_NUMBER 定义为宏主要目的是为了能将任意类型（如double,int)的数字型字符串转为数字
 // 返回值：转换成功1 否则返回0
-#define STRING_TO_NUMBER(str, num) (istringstream(str) >> d)
+#define STRING_TO_NUMBER(str, num) (istringstream(str) >> num)
+
 // 返回值：转换过后的字符串
 #define NUMBER_TO_STRING(num) (((ostringstream&)(ostringstream() << num)).str())
 
@@ -20,12 +21,18 @@ int main()
     if( STRING_TO_NUMBER("3.1415978", d) )
         cout << d << endl;
 
+    // 数字转换为字符串
+    // string s = 3.1415978;                 // error: conversion from 'double' to non-scalar type 'std::__cxx11::string {aka std::__cxx11::basic_string<char>}' requested
+    string s = NUMBER_TO_STRING(3.1415978);  // 说明确实是转换为了string类型
+    cout << s << endl;
+
     // 数字位数过大时也出现异常情况
     cout << NUMBER_TO_STRING(123456789.123456) << endl;
 
     return 0;
 }
 /* 运行结果
+3.1416
 3.1416
 1.23457e+008
 */

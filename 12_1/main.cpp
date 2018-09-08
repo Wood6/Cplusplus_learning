@@ -39,9 +39,9 @@ int main()
 
     rc = 'a';
 
-    printf("c = %c\n", c);     // c
-    printf("rc = %c\n", rc);   // c
-    printf("x = %c\n", x);     // a
+    printf("c = %c\n", c);     // a
+    printf("rc = %c\n", rc);   // a
+    printf("x = %c\n", x);     // c
 
     printf("&c = %p\n", &c);
     printf("&rc = %p\n", &rc); // rc与c的地址相同

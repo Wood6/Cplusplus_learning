@@ -1,21 +1,21 @@
-// Class.c
+ï»¿// Class.c
 #include "Class.h"
 #include <malloc.h>
 
 static int Test_Virtual_add(Test* pThis, int v);
 static int Child_Virtual_add(Test* pThis, int v);
 
-// 2. ¶¨ÒåÐéº¯Êý±íÊý¾Ý½á¹¹
+// 2. å®šä¹‰è™šå‡½æ•°è¡¨æ•°æ®ç»“æž„
 struct VTable
 {
-    // 3. Ðéº¯Êý±íÀïÃæ´æ´¢µÄÄÚÈÝ£¨º¯ÊýÖ¸Õë£©
+    // 3. è™šå‡½æ•°è¡¨é‡Œé¢å­˜å‚¨çš„å†…å®¹ï¼ˆå‡½æ•°æŒ‡é’ˆï¼‰
     int (*pAdd)(void*, int);
 };
 
-// ¶¨Òå¸¸Àà½á¹¹Ìå
+// å®šä¹‰çˆ¶ç±»ç»“æž„ä½“
 struct ClassTest
 {
-    struct VTable* vptr; // 1. ¶¨ÒåÐéº¯Êý±íÖ¸Õë ==>Ðéº¯Êý±íÖ¸ÕëµÄÀàÐÍ
+    struct VTable* vptr; // 1. å®šä¹‰è™šå‡½æ•°è¡¨æŒ‡é’ˆ ==>è™šå‡½æ•°è¡¨æŒ‡é’ˆçš„ç±»åž‹
     int m_i;
     int m_j;
 };
@@ -26,26 +26,26 @@ struct ClassChild
     int m_k;
 };
 
-// ¸¸ÀàµÄÐéº¯Êý±í
+// çˆ¶ç±»çš„è™šå‡½æ•°è¡¨
 struct VTable g_Test_vtbl =
 {
     Test_Virtual_add
 };
 
-// ×ÓÀàµÄÐéº¯Êý±í
+// å­ç±»çš„è™šå‡½æ•°è¡¨
 struct VTable g_Child_vtbl =
 {
     Child_Virtual_add
 };
 
-// ÊµÏÖ¸÷³ÉÔ±º¯Êý£¨´øthisÖ¸Õë£©
+// å®žçŽ°å„æˆå‘˜å‡½æ•°ï¼ˆå¸¦thisæŒ‡é’ˆï¼‰
 Test* Test_Creat(int i, int j)
 {
     struct ClassTest* ret = (struct ClassTest*)malloc(sizeof(struct ClassTest));
 
     if( ret )
     {
-        ret->vptr = &g_Test_vtbl; // 4. ¹ØÁª¶ÔÏóºÍÐéº¯Êý±í
+        ret->vptr = &g_Test_vtbl; // 4. å…³è”å¯¹è±¡å’Œè™šå‡½æ•°è¡¨
         ret->m_i = i;
         ret->m_j = j;
     }
@@ -63,16 +63,16 @@ int Test_getMj(Test* pThis)
     return ( (struct ClassTest*)pThis )->m_j;
 }
 
-// 6. ¶¨ÒåÐéº¯Êý±íÖÐÖ¸ÕëËùÖ¸ÏòµÄ¾ßÌåº¯Êý
+// 6. å®šä¹‰è™šå‡½æ•°è¡¨ä¸­æŒ‡é’ˆæ‰€æŒ‡å‘çš„å…·ä½“å‡½æ•°
 static int Test_Virtual_add(Test* pThis, int v)
 {
     return ( (struct ClassTest*)pThis )->m_i+ ( (struct ClassTest*)pThis )->m_j + v;
 }
 
-// 5. ·ÖÎö¾ßÌåµÄÐéº¯Êý
-int Test_add(Test* pThis, int v)  // ÊÇ¸öÐéº¯Êý
+// 5. åˆ†æžå…·ä½“çš„è™šå‡½æ•°
+int Test_add(Test* pThis, int v)  // æ˜¯ä¸ªè™šå‡½æ•°
 {
-    // ´ÓÐéº¯Êý±íÖÐÕÒµ½ÕæÕýµÄÊµÏÖº¯Êý
+    // ä»Žè™šå‡½æ•°è¡¨ä¸­æ‰¾åˆ°çœŸæ­£çš„å®žçŽ°å‡½æ•°
     return ( (struct ClassTest*)pThis )->vptr->pAdd(pThis, v);
 }
 
@@ -101,13 +101,13 @@ int Child_getMk(Child* pThis)
     return ( (struct ClassChild*)pThis )->m_k;
 }
 
-// ¶¨Òå×ÓÀàÐéº¯Êý±íÖÐÖ¸ÕëËùÖ¸ÏòµÄ¾ßÌåº¯Êý
+// å®šä¹‰å­ç±»è™šå‡½æ•°è¡¨ä¸­æŒ‡é’ˆæ‰€æŒ‡å‘çš„å…·ä½“å‡½æ•°
 static int Child_Virtual_add(Test* pThis, int v)
 {
     return ( (struct ClassChild*)pThis )->m_k + v;
 }
 
-// ·ÖÎöÐéº¯Êý
+// åˆ†æžè™šå‡½æ•°
 int Child_add(Child* pThis, int v)
 {
     return ( (struct ClassChild*)pThis )->parent.vptr->pAdd(pThis, v);

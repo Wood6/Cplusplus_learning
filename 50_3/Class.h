@@ -1,12 +1,12 @@
-// Class.h
+ï»¿// Class.h
 #ifndef __CLASS_H_
 #define __CLASS_H_
 
-// ÀûÓÃÕâ¸öÊµÏÖ·â×°ĞÔ
+// åˆ©ç”¨è¿™ä¸ªå®ç°å°è£…æ€§
 typedef void Test;
 typedef void Child;
 
-// ÉùÃ÷³ÉÔ±º¯Êı(½Ó¿Ú)
+// å£°æ˜æˆå‘˜å‡½æ•°(æ¥å£)
 Test* Test_Creat(int i, int j);
 int Test_getMi(Test* pThis);
 int Test_getMj(Test* pThis);

@@ -1,10 +1,10 @@
-// C¹¤³Ì£¬CÓïÑÔÄ£ÄâÃæÏò¶ÔÏó
+ï»¿// Cå·¥ç¨‹ï¼ŒCè¯­è¨€æ¨¡æ‹Ÿé¢å‘å¯¹è±¡
 #include <stdio.h>
 #include "Class.h"
 
 void run(Test* p)
 {
-    printf("%d\n", Test_add(p, 3));  // ¶àÌ¬
+    printf("%d\n", Test_add(p, 3));  // å¤šæ€
 }
 
 int main()
@@ -20,7 +20,7 @@ int main()
 
     return 0;
 }
-/* ÔËĞĞ½á¹û
+/* è¿è¡Œç»“æœ
 6
 15
 */

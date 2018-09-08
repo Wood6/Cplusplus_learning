@@ -43,7 +43,7 @@ class Doctor : public Teacher, public Student
 {
 public:
     // 请注意，构造函数中的最后一个初始化People，也就是说采用虚继承的话，则
-    // 最终的子终仍需调用顶层父类的构造函数，这也是虚继承的一大问题，因为在
+    // 最终的子类需调用顶层父类的构造函数，这也是虚继承的一大问题，因为在
     // 实际开发中，有时很难确定最顶层的基类
     Doctor(string name, int age) : Teacher(name, age),
         Student(name, age), People(name, age) {}

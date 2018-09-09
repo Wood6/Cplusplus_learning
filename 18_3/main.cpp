@@ -1,57 +1,49 @@
 // main.cpp 文件
 #include <iostream>
+#include <string>
+#include <memory>  //for auto_ptr
 #include "HeapArray.h"
 
 using namespace std;
 
+void TestHeapArray()
+{
+    // 使用智能指针，目的是自动释放堆空间
+    // 局部变量pa，数据类型：auto_ptr< HeapArray<double> > 是个智能指针类型
+    // 初始化 HeapArray<double>::NewInstance(5)
+    auto_ptr< HeapArray<double> > pa(HeapArray<double>::NewInstance(5));
+
+    if(pa.get() != NULL)
+    {
+        HeapArray<double>& array = pa->self();
+
+        for(int i=0; i<array.length(); i++)
+        {
+            array[i] = i;
+        }
+
+        for (int i=0; i<10; i++)    // 越界访问触发异常
+        {
+            cout << array[i] << endl;
+        }
+    }
+}
+
 int main()
 {
-    HeapArray<char>* tab = HeapArray<char>::NewInstance(10);
-    HeapArray<char>* tab1 = HeapArray<char>::NewInstance(5);
-
-    if( tab && tab1 )
-    {
-        HeapArray<char>& rTab = tab->self();
-        HeapArray<char>& rTab1 = tab1->self();
-
-        for(int i=0; i<tab->length(); i++)
-        {
-            rTab[i] = i + 'a';  // 避免非得这样使用指针 (*tab)[i] = i + 'a';
-        }
-
-        for(int i=0; i<tab->length(); i++)
-        {
-            cout << rTab[i] << " ";
-        }
-
-        cout << endl;
-
-        //HeapArray<char> tab2 = *tab;   // 拷贝构造,能直接用现有数组初始化新定义数组
-        HeapArray<char> tab2 = rTab;     // 与上等价
-
-        for(int i=0; i<tab2.length(); i++)
-        {
-            cout << tab2[i] << " ";
-        }
-
-        cout << endl;
-
-        rTab1 = rTab;   // 赋值
-
-        for(int i=0; i<rTab1.length(); i++)
-        {
-            cout << rTab1[i] << " ";
-        }
-
-        cout << endl;
-    }
-
-    delete tab;
+    TestHeapArray();
 
     return 0;
 }
 /* 运行结果
-a b c d e f g h i j
-a b c d e f g h i j
-a b c d e f g h i j
+0
+1
+2
+3
+4
+
+This application has requested the Runtime to terminate it in an unusual way.
+Please contact the application's support team for more information.
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  T& HeapArray<T>::operator[](int index)
 */

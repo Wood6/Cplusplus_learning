@@ -2,6 +2,8 @@
 #ifndef _HEAPARRAY_H_
 #define _HEAPARRAY_H_
 
+#include <stdexcept>    // 引入异常类
+
 template < typename T >
 class HeapArray
 {
@@ -160,6 +162,10 @@ T& HeapArray<T>::operator [] (int index)
     {
         return m_pointer[index];
     }
+    else
+    {
+        throw std::out_of_range("T& HeapArray<T>::operator[](int index)");
+    }
 }
 
 template < typename T >
@@ -168,6 +174,10 @@ T HeapArray<T>::operator [] (int index) const
     if( (0 <= index ) && (index < m_length) )
     {
         return m_pointer[index];
+    }
+    else
+    {
+        throw std::out_of_range("T& HeapArray<T>::operator[](int index) const");
     }
 }
 
